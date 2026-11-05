@@ -1,13 +1,40 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Software Licences for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Weekly licence desk",
+    "subtitle": "Recorded evidence, not a licence certification",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Exceptions",
+        "sql": "select * from v_attention order by priority,name,issue"
+      },
+      {
+        "title": "Renewals",
+        "sql": "select name,reference,quantity,ends_on,days_left,proof from v_renewals order by days_left"
+      }
+    ]
+  },
+  {
+    "name": "positions",
+    "title": "Recorded licence positions",
+    "sections": [
+      {
+        "title": "Coverage and unresolved rules",
+        "sql": "select name,metric,purchased,evidenced,required,stale,balance,assessment from v_position order by name"
+      },
+      {
+        "title": "Demand by department",
+        "sql": "select * from v_departments order by name,department"
+      }
+    ]
+  },
+  {
+    "name": "reclaim",
+    "title": "Assignments to review",
+    "sections": [
+      {
+        "title": "Removal needs evidence",
+        "sql": "select name,consumer,kind,department,consumer_state,last_used,reason from v_reclaim order by name,consumer"
       }
     ]
   }

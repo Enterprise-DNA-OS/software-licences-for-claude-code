@@ -1,11 +1,61 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "licence-position",
+    "title": "Licence position working paper",
+    "for_each": "select id,name from applications order by name",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Assessment",
+        "sql": "select name,metric,evidenced,required,balance,stale,assessment from v_position where id=$1",
+        "layout": "record",
+        "note": "Based only on recorded evidence. Complex licensing needs specialist review."
+      },
+      {
+        "title": "Reviewed terms",
+        "sql": "select publisher,terms_source,reviewed_by,reviewed_on from applications where id=$1",
+        "layout": "record"
+      },
+      {
+        "title": "Purchase proof",
+        "sql": "select reference,metric,quantity,starts_on,ends_on,evidence_ref,verified_by from entitlements where application_id=$1 order by reference"
+      },
+      {
+        "title": "Assignments",
+        "sql": "select c.name,c.kind,c.department,d.state,d.observed_on,d.last_used,d.release_evidence from deployments d join consumers c on c.id=d.consumer_id where d.application_id=$1 order by c.name"
+      }
+    ]
+  },
+  {
+    "name": "renewal-brief",
+    "title": "Renewal decision brief",
+    "for_each": "select distinct a.id,a.name from applications a join entitlements e on e.application_id=a.id where e.ends_on<=current_date+(select days from policy where key='renewal_days') order by a.name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Rights and dates",
+        "sql": "select reference,quantity,starts_on,ends_on,evidence_ref from entitlements where application_id=$1 order by ends_on"
+      },
+      {
+        "title": "Current position",
+        "sql": "select metric,evidenced,required,balance,assessment from v_position where id=$1"
+      },
+      {
+        "title": "Notes and decisions",
+        "sql": "select actor,action,detail,created_at from events where application_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "reclaim-review",
+    "title": "Removal evidence working paper",
+    "for_each": "select id,name from applications order by name",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Candidates, no automatic removals",
+        "sql": "select c.name,c.kind,c.state as consumer_state,d.last_used,d.state as assignment_state,d.release_evidence,d.released_by,d.released_on from deployments d join consumers c on c.id=d.consumer_id where d.application_id=$1 order by c.name"
+      }
     ]
   }
 ]

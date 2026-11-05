@@ -1,115 +1,138 @@
-<h1 align="center">Software Licences for Claude Code</h1>
+# Software Licences for Claude Code
 
-<p align="center">
-  <strong>The open-source software licence reconciliation desk that is just a database and Claude Code.</strong>
-</p>
+Your software purchases, assignments, renewal dates and evidence in a database you own. See where the records show a shortfall, what needs proof and which removals need checking.
 
-<p align="center">
-  Created by <a href="https://www.enterprisedna.co"><strong>Enterprise DNA</strong></a>. Free and open source. Works with Claude Code, Codex, OpenCode or Cursor.
-</p>
+## Three ways to own it
 
-<!-- three-doors -->
-<table align="center">
-  <tr>
-    <td align="center"><strong>Do it yourself</strong><br/>Clone it, run it, own it. Free, MIT.<br/><a href="#quick-start">Quick start</a></td>
-    <td align="center"><strong>We customise it</strong><br/>Your fields, your rules, your Snow License Manager data brought across.<br/><a href="https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager">Book a call</a></td>
-    <td align="center"><strong>We run it for you</strong><br/>Installed, connected and operated inside Omni. Setup fee, then a retainer.<br/><a href="https://enterprisedna.co/omni/instead-of/snow-license-manager?utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager">How it works</a></td>
-  </tr>
-</table>
+- **Do it yourself:** free MIT code. Run it with Claude Code, Codex, OpenCode or Cursor. Hosting, agent subscriptions and your time are separate costs.
+- **We customise it:** Enterprise DNA brings your Snow License Manager exports across, maps your terms, adds fields and connects discovery feeds or screens. We can build on a different stack if needed. One setup fee, then a retainer for ongoing work.
+- **We run it for you:** installed, connected and operated through Omni by Enterprise DNA. One setup fee, then a monthly retainer.
 
-<p align="center">
-  <a href="#what-is-this">What is this</a> &bull;
-  <a href="#why-no-front-end">Why no front end</a> &bull;
-  <a href="#quick-start">Quick start</a> &bull;
-  <a href="#the-commands">Commands</a> &bull;
-  <a href="#instead-of-snow-license-manager">Instead of Snow License Manager</a> &bull;
-  <a href="#want-it-installed-and-run-for-you">Installed for you</a> &bull;
-  <a href="#license">License</a>
-</p>
+[Book 30 minutes with Sam](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager).
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Node-20+-339933?style=flat-square" alt="Node 20+" />
-  <img src="https://img.shields.io/badge/PostgreSQL-any-336791?style=flat-square" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/PGlite-embedded-3ecf8e?style=flat-square" alt="PGlite" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT License" />
-</p>
+## Start with a fictional licence desk
 
----
-
-## What is this
-
-Software Licences for Claude Code does the job you pay Snow License Manager for, as a Postgres database and a set of agent commands. There is no web front end. You open the folder in [Claude Code](https://claude.com/claude-code) (or Codex, OpenCode, Cursor: see `AGENTS.md`) and ask for what you want in plain language. It runs the right query, and it can answer questions the Snow License Manager dashboard cannot.
-
-<!-- TODO(author): the annual bill. One sentence: what a 10 to 50 person business typically pays Snow License Manager per year, all in, with a source. -->
-
-Want the same thing with a web front end, or built on a different stack? That is a customisation, and it is exactly what Enterprise DNA does: [book a call](https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager).
-
-<!-- TODO(author): two or three sentences on what this specific product covers and who it is for. -->
-
-## Why no front end
-
-- The front end was only ever there because the database was hard to talk to. That is no longer true.
-- Your data sits in plain Postgres tables you own. Any tool can read them. No export, no lock-in.
-- No seats, no tiers, no add-ons. Read [docs/why-no-front-end.md](docs/why-no-front-end.md) for the honest trade-offs too.
-
-## Quick start
-
-Sixty seconds, no database install (an embedded Postgres runs inside Node):
+Node 20 or newer. No database account required.
 
 ```bash
-git clone https://github.com/Enterprise-DNA-OS/software-licences-for-claude-code.git
-cd software-licences-for-claude-code
 npm install
 npm run demo
+npm run licences -- position
+npm run licences -- attention
+npm run view
+npm run docs
+npm test
 ```
 
-Then open the folder in Claude Code and type a slash command. <!-- TODO(author): name the first command to try. -->
+The demo has four fictional products. HarbourCAD Professional has three recorded installations and only one evidenced right. A second purchase has no proof. A retired device remains assigned. Kauri Documents has enough recorded rights but stale inventory. Southern Database uses complex terms that are explicitly unassessed. Every number comes from these demo records, not a customer or real publisher contract.
 
-### Use it with your own Postgres or Supabase
+## What this replaces
 
-Copy `.env.example` to `.env`, set `DATABASE_URL`, then `npm run migrate`. Same commands, shared data, no per-seat fee.
+The weekly reconciliation desk: product/version records, device and named-user assignments, purchased quantities, source agreements, evidence reviews, renewal decisions and draft working papers. It is a scoped alternative to the record-based licence desk in Snow License Manager. It does not claim full Snow feature parity. Snow's documented reports already cover many licence questions; this database lets you join those records to your own departments, evidence and decisions without a fixed report catalogue.
 
-## The commands
+Snow prices are quoted privately. Its [legacy product metrics](https://www.flexera.com/sites/default/files/license-metrics.pdf) describe device-based licensing for the base technology package; the actual contract governs your bill. We do not publish a guessed price or promise savings.
 
-<!-- TODO(author): a table of the slash commands in .claude/commands and what each one does. -->
+## Ten questions to ask of your records
 
-| Command | What it does |
+Run `npm run licences -- insights --json` for all ten answers. Each question has a working query today. These are useful checks, not a claim that Snow cannot report them.
+
+1. Which products have more assignments than evidenced rights?
+2. Which purchases have missing or unchecked proof?
+3. Which rights expire in the renewal window?
+4. Which retired users or devices still consume a recorded assignment?
+5. Which assignments have no recorded use date?
+6. Which products cannot yet be assessed?
+7. Where is demand concentrated by department?
+8. Which apparently covered products have stale evidence?
+9. Which renewals also have a current shortfall?
+10. Who last recorded a decision and what was the evidence?
+
+## The week's rituals
+
+Start with /attention, reconcile /position, gather /evidence, review /renewals and check /reclaim. /weekly-review writes a draft from three live queries. /draft-renewal prepares the evidence request. /compliance cites the rule behind each finding. /log records the decision with its operator.
+
+30 slash commands ship with the desk, of which 28 call the CLI. The two authoring recipes add fields and reports.
+
+| Command | Job |
 |---|---|
-| `/...` | ... |
+| /help | List commands |
+| /applications | Products and reviewed licence rules |
+| /consumers | Devices and named users |
+| /position | Reconcile evidenced rights against recorded demand |
+| /attention | Prioritised exceptions |
+| /compliance | Evidence checks with source rules |
+| /renewals | Expired rights and upcoming renewals |
+| /reclaim | Unused and retired assignments for review |
+| /inventory | Recorded installations and assignments |
+| /entitlements | Purchased rights and dates |
+| /evidence | Purchase proof and review gaps |
+| /departments | Demand by department |
+| /history | Recorded actions |
+| /application | One product, its position and source terms |
+| /add-application | Register a product for review |
+| /add-consumer | Register a device or user |
+| /set-rule | Record reviewed device or user terms |
+| /add-entitlement | Record a purchase |
+| /verify-entitlement | Record checked purchase evidence |
+| /assign | Record an installation or named-user assignment |
+| /release | Record a confirmed removal or unassignment |
+| /set-consumer | Record retired or active status without releasing licences |
+| /log | Record a note |
+| /import | Import Snow report CSVs atomically |
+| /export | Export every business record |
+| /weekly-review | Draft the weekly licence review |
+| /draft-renewal | Draft a renewal evidence request |
+| /insights | Answer ten licence desk questions |
+| /customise | Add a field or change a rule through a tested migration |
+| /new-view | Add a branded read-only report |
 
-## Instead of Snow License Manager
+Every CLI command accepts `--json`. Writes require `--by="Operator"`. Names are case-insensitive, partial IDs work, and an ambiguous match lists candidates and exits 1. Run `npm run licences -- help` or open its command recipe for an example.
 
-<!-- TODO(author): how to bring data across from Snow License Manager; link docs/replace-snow-license-manager.md -->
+## Move from Snow
 
-## Architecture
+Export current Applications per computer and licence reports as CSV. Run one import command for both, first as a trial. Exact repeated files do not duplicate rows. Changed inventory updates matching assignments. Changed existing licence purchases stop for evidence reconciliation.
 
+```bash
+npm run licences -- import snow-license-manager --deployments=imports/applications-per-computer.csv --licenses=imports/licenses.csv --dry-run --by="Licence owner"
 ```
-software-licences-for-claude-code/
-  CLAUDE.md                 how the operator wants this run (routing table + house rules)
-  AGENTS.md                 the same, for Codex / OpenCode / Cursor / Gemini CLI
-  .claude/commands/         the slash commands
-  scripts/                  the CLI the commands drive
-  scripts/lib/db.mjs        one adapter: DATABASE_URL (pg) or embedded PGlite
-  supabase/migrations/      plain SQL schema
-  supabase/seed.sql         demo data
-  docs/                     the thesis and the migration guide
-```
 
-## Built for coding agents
+Remove `--dry-run` to apply. The [switch guide](docs/replace-snow-license-manager.md) gives required headers, ISO dates, retained columns, review steps and limitations. The importer preserves original rows. New products and purchases start unassessed; importing a number is not certifying a grant. Use `npm run migrate` without the demo seed for your real database.
 
-The database, CLI and command recipes work with Claude Code, Codex, OpenCode or Cursor. Ask your coding agent for a new command and have it implement and test the change against the same records.
+## Licence rules and evidence
 
-## Contributing
+Device and explicit named-user metrics are supported after review. Different product versions are not pooled. Evidence-free, expired or not-yet-started purchases provide no coverage. Unsupported metrics stay UNASSESSED. Products without inventory evidence show NO INVENTORY. Stale observations flag an otherwise covered position as PROVISIONAL. A retired consumer counts until removal is confirmed; unknown usage is not inactivity. See [the checks and cited sources](docs/compliance.md).
 
-Issues and pull requests are welcome. Keep the shape: plain SQL, a small CLI, a slash command per recurring job, no front end.
+No automatic discovery, uninstall, vendor audit submission or legal compliance certification. Complex core, processor, virtualisation, bundle, concurrent and downgrade rights need a specialist and a custom rule. Do not store licence keys or passwords.
 
-## Want it installed and run for you?
+## Paperwork and read-only views
 
-Enterprise DNA installs Software Licences for Claude Code for your business, migrates your Snow License Manager data, connects it to the rest of your tools, and runs it for you as part of **Omni**, our managed Command Center. One setup fee, then a monthly retainer.
+`npm run docs` produces licence position working papers, renewal briefs and removal evidence papers. `npm run view` produces the weekly exceptions, licence positions and reclaim review. All use `brand.json` for business name, logo and colours. Generated HTML is private, ignored by Git and contains no action buttons. Open it locally or print to PDF. These are drafts, never vendor attestations.
 
-- Book a call: [enterprisedna.co/omni/book](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager)
-- Read more: [enterprisedna.co/omni/instead-of/snow-license-manager](https://enterprisedna.co/omni/instead-of/snow-license-manager?utm_source=github&utm_medium=readme&utm_campaign=snow-license-manager)
+Read [why there is no front end](docs/why-no-front-end.md). A phone app, screen, discovery integration or different stack is custom work Enterprise DNA can build into your version.
 
-## License
+## Your first hour: ten things to ask for
 
-MIT. Copyright (c) 2026 Enterprise DNA.
+1. Show the recorded shortfalls and the proof behind them.
+2. Show renewals due in the next two months.
+3. Find devices retired but still assigned software.
+4. Explain why a position is provisional.
+5. List purchases with missing invoices or agreements.
+6. Draft the renewal evidence request for one product.
+7. Prepare the weekly licence review and its next decisions.
+8. Compare assignments by department.
+9. Add a contract-owner field using /customise.
+10. Add a report of unassessed products using /new-view.
+
+## Storage and portability
+
+The default PGlite database lives in `.data/db`. Set `DATABASE_URL` for PostgreSQL through the same adapter; private connection files stay outside Git. Each domain table has UUIDs, timestamps and an update trigger. Public roles have no table or view grants, and row level security is enabled. The CLI runs as the database owner. This is not a hosted multi-tenant access layer. Set access, retention and backups for your deployment. PGlite supports one operator process at a time.
+
+`npm run licences -- export --out=exports/licences` writes all eight registers as CSV and a lossless JSON archive. Every import row and action is included. Use the JSON archive for lossless interchange and treat CSV cells as text when opening untrusted data in spreadsheets. Back up the database separately.
+
+## Verification
+
+`npm test` uses a temporary database, blocks operational connection settings and exercises every CLI command. It checks missing proof, stale observations, unsupported metrics, release evidence, repeat imports, full rollback, dates, ambiguous matches, history, exports, drafts and HTML output. Set `TEST_DATABASE_URL` only to an empty disposable PostgreSQL database for the same suite. The manual CI workflow covers Node 20 and 22 on Windows and Linux plus PostgreSQL 17.
+
+## Licence
+
+MIT. Built by Enterprise DNA. Snow License Manager is a Flexera product. This independent project is not affiliated with or endorsed by Flexera.

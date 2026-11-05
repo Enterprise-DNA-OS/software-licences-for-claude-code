@@ -22,9 +22,38 @@ Fill this in once. A worker with context knows. A worker without it guesses.
 
 | When the operator asks for... | Use this |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| List commands | `/help` |
+| Products and reviewed licence rules | `/applications` |
+| Devices and named users | `/consumers` |
+| Reconcile evidenced rights against recorded demand | `/position` |
+| Prioritised exceptions | `/attention` |
+| Evidence checks with source rules | `/compliance` |
+| Expired rights and upcoming renewals | `/renewals` |
+| Unused and retired assignments for review | `/reclaim` |
+| Recorded installations and assignments | `/inventory` |
+| Purchased rights and dates | `/entitlements` |
+| Purchase proof and review gaps | `/evidence` |
+| Demand by department | `/departments` |
+| Recorded actions | `/history` |
+| One product, its position and source terms | `/application` |
+| Register a product for review | `/add-application` |
+| Register a device or user | `/add-consumer` |
+| Record reviewed device or user terms | `/set-rule` |
+| Record a purchase | `/add-entitlement` |
+| Record checked purchase evidence | `/verify-entitlement` |
+| Record an installation or named-user assignment | `/assign` |
+| Record a confirmed removal or unassignment | `/release` |
+| Record retired or active status without releasing licences | `/set-consumer` |
+| Record a note | `/log` |
+| Import Snow report CSVs atomically | `/import` |
+| Export every business record | `/export` |
+| Draft the weekly licence review | `/weekly-review` |
+| Draft a renewal evidence request | `/draft-renewal` |
+| Answer ten licence desk questions | `/insights` |
+| Change a field or rule | `/customise` |
+| Add a read-only report | `/new-view` |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+If an ask fits nothing here, run the CLI directly (`npm run licences -- help`) and then propose a new command for it.
 
 ## Hard rules
 
@@ -41,3 +70,7 @@ If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) an
 - `docs/` the thesis and the guide for moving off Snow License Manager.
 
 Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/snow-license-manager
+
+## Licence desk rules
+
+Read docs/compliance.md before interpreting a position. Recorded coverage is not a compliance certificate. No discovery, automatic removal or inferred publisher rights. Imported metrics remain under review until a person checks the agreement. Missing proof never counts as evidenced coverage. Never store licence keys or passwords. Every record change names the operator with --by. Use an empty database with npm run migrate for real records; the seed is fictional.
